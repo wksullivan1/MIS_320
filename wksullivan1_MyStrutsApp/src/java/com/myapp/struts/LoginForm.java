@@ -29,7 +29,7 @@ public class LoginForm extends org.apache.struts.action.ActionForm
         return error;
     }
 
-    public void setError(String error)
+    public void setError()
     {
         this.error = "<span style='color:red'>Please provide valid entries for both fields</span>";
     }
