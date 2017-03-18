@@ -7,6 +7,7 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="RequestForm" type="com.myapp.struts.RequestForm"/>
     
     </form-beans>
     
@@ -15,10 +16,13 @@
     </global-exceptions>
 
     <global-forwards>
+        <forward name="success" path="/response.jsp"/>
+        <forward name="failure" path="/request.jsp"/>
         <forward name="welcome"  path="/Welcome.do"/>
     </global-forwards>
 
     <action-mappings>
+        <action name="RequestForm" path="/request" scope="request" type="com.myapp.struts.RequestAction" validate="false"/>
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>
     
