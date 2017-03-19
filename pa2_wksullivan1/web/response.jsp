@@ -16,19 +16,47 @@
         <h1>Congratulations!</h1>
 
         <p>You have successfully logged in.</p>
+        <p>Your Order Number is :<bean:write name="ProductBean" property="orderNumber" /> .</p>
+        <p>Your Customer ID is:<bean:write name="ProductBean" property="customerID" /> .</p>
+        <p>Your Product ID is:<bean:write name="ProductBean" property="product_ID" /> .</p>
+        <p>Your Quantity is:<bean:write name="ProductBean" property="quantity" /> .</p>
+        <p>Your Shipping Cost is:<bean:write name="ProductBean" property="shippingCost" /> .</p>
+        <p>Your Sales Date is:<bean:write name="ProductBean" property="salesDate" /> .</p>
+        <p>Your Shipping Date is:<bean:write name="ProductBean" property="shippingDate" /> .</p>
+        
+       
+        
+        <table border=1>
+                <thead>
+                    <tr>
+                        <th>Order Number</th>
+                        <th>Customer ID</th>
+                        <th>Product ID</th>
+                        <th>Quantity</th>
+                        <th>Shipping Cost</th>
+                        <th>Sales Date</th>
+                        <th>Shipping Date</th>                         
+                        <th colspan=2>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+            
+                    <c:forEach items="${productList}" var="prod">
+                        <tr>
+                            <td><c:out value="${prod.orderNumber}" /></td>
+                            <td><c:out value="${emp.ename}" /></td>
+                            <td><c:out value="${emp.enumber}" /></td>
 
-        <p>Your Order Number is :<bean:write name="RequestForm" property="orderNumber" /> .</p>
-
-        <p>Your Customer ID is:<bean:write name="RequestForm" property="customerID" /> .</p>
-
-        <p>Your Product ID is:<bean:write name="RequestForm" property="product_ID" /> .</p>
-
-        <p>Your Quantity is:<bean:write name="RequestForm" property="quantity" /> .</p>
-
-        <p>Your Shipping Cost is:<bean:write name="RequestForm" property="shippingCost" /> .</p>
-
-        <p>Your Sales Date is:<bean:write name="RequestForm" property="salesDate" /> .</p>
-
-        <p>Your Shipping Date is:<bean:write name="RequestForm" property="shippingDate" /> .</p>
+                            <td>
+                                <form action="EmployeeController" method="POST">
+                                    <a href='' onclick="this.href='EmployeeController?action=update&id=<c:out value="${emp.id}"/>&enamenew='+document.getElementById('enamenew').value+'&enumberupdatenew='+document.getElementById('enumberupdatenew').value">Update</a>
+                                </form>
+                            </td>
+                                   
+                            <td><a href="EmployeeController?action=delete&id=<c:out value="${emp.id}"/>">Delete</a></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
     </body>
 </html>

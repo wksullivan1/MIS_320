@@ -10,7 +10,7 @@ import org.apache.struts.action.ActionMessage;
  *
  * @author willk
  */
-public class RequestForm extends org.apache.struts.action.ActionForm
+public class ProductBean extends org.apache.struts.action.ActionForm
 {
 
     private int orderNumber;
@@ -102,7 +102,7 @@ public class RequestForm extends org.apache.struts.action.ActionForm
         this.error = "<span style='color:red'>Please provide valid entries for both fields</span>";
     }
 
-    public RequestForm()
+    public ProductBean()
     {
         super();
         // TODO Auto-generated constructor stub

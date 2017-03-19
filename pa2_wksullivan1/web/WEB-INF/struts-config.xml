@@ -7,7 +7,7 @@
 
 <struts-config>
     <form-beans>
-        <form-bean name="RequestForm" type="com.myapp.struts.RequestForm"/>
+        <form-bean name="ProductBean" type="com.myapp.struts.ProductBean"/>
     
     </form-beans>
     
@@ -22,7 +22,7 @@
     </global-forwards>
 
     <action-mappings>
-        <action name="RequestForm" path="/request" scope="request" type="com.myapp.struts.RequestAction" validate="false"/>
+        <action name="ProductBean" path="/request" scope="request" type="com.myapp.struts.ProductRegisterAction" validate="false"/>
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>
     

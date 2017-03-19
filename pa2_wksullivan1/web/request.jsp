@@ -27,7 +27,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">
-                            <bean:write name="RequestForm" property="error" filter="false"/>
+                            <bean:write name="ProductBean" property="error" filter="false"/>
                             &nbsp;
                         </td>
                     </tr>
