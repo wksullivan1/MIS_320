@@ -68,12 +68,26 @@
 
 
         <html:form action="/delete">   
-            Enter your Order Number:
+            Enter your Order Number to be deleted:
             <html:text property="orderNumber" />
             <html:submit value="Delete"/>
         </html:form>
+            <br>
+        <html:form action="/update">   
+            Enter your Order Information to be updated
+            <br>
+            Order Number:<html:text property="orderNumber" /><br>
+            Customer ID:<html:text property="customerID" /><br>
+            Product ID:<html:text property="product_ID" /><br>
+            Quantity:<html:text property="quantity" /><br>
+            Shipping Cost:<html:text property="shippingCost" /><br>
+            Sales Date:<html:text property="salesDate" /><br>
+            Shipping Date:<html:text property="shippingDate" />  <br>         
+            
+            <html:submit value="Update"/>
+        </html:form>             
 
 
-        <input type="text" id ="searchTextBox"/><button onclick ="search()">Search</button>
+        Enter your order number to be searched:<input type="text" id ="searchTextBox"/><button onclick ="search()">Search</button>
     </body>
 </html>

@@ -22,6 +22,7 @@
     </global-forwards>
 
     <action-mappings>
+        <action name="ProductBean" path="/update" scope="request" type="com.myapp.struts.ProductUpdateAction" validate="false"/>
         <action name="ProductBean" path="/delete" scope="request" type="com.myapp.struts.ProductDeleteAction" validate="false"/>
         <action name="ProductBean" path="/request" scope="request" type="com.myapp.struts.ProductRegisterAction" validate="false"/>
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
