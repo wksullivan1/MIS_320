@@ -78,5 +78,38 @@ public class ProductDAO
             e.printStackTrace();
         }
     }
+    
+    public void updateData(int orderNumber, int customerID, int product_ID, int quantity, int shippingCost, Date salesDate, Date shippingDate) throws Exception{
+        System.out.println("jdbc connection");
+        Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/myDatabase;user=mis320;password=mis320");
+        try
+        {
+            try
+            {
+                String sql = "update PRODUCT set CUSTOMER_ID = ?, PRODUCT_ID = ?, QUANTITY = ?, SHIPPING_COST = ?, SALES_DATE = ?, SHIPPING_DATE = ? where ORDER_NUM = ?";
+
+                PreparedStatement st = con.prepareStatement(sql);
+                
+                st.setInt(1, customerID);
+                st.setInt(2, product_ID);
+                st.setInt(3, quantity);
+                st.setInt(4, shippingCost);
+                st.setDate(5, salesDate);
+                st.setDate(6, shippingDate);
+                st.setInt(7, orderNumber);
+
+                st.executeUpdate();
+                st.close();
+            } catch (SQLException ex)
+            {
+                System.out.println("SQL statement is not executed!" + ex);
+            }
+            con.close();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 }
