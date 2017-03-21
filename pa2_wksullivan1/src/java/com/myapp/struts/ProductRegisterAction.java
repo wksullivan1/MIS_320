@@ -52,13 +52,11 @@ public class ProductRegisterAction extends Action
         ses.setAttribute("SHIPPING_DATE",shippingDate);
 
         // perform validation
-        if ((orderNumber < 0) || (customerID < 0) || (product_ID < 0) || (quantity <= 0)
-                || (shippingCost < 0) || salesDate == null || shippingDate == null)
+        if ((orderNumber < 0) || (customerID < 0) || (product_ID < 0) || (quantity <= 0)|| (shippingCost < 0) || salesDate == null || shippingDate == null)
         {
             formBean.setError();
             return mapping.findForward(FAILURE);
         }
-
         return mapping.findForward(SUCCESS);
     }
 }

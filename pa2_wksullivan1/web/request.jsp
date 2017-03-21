@@ -65,5 +65,6 @@
                 </tbody>
             </table>
         </html:form>
+        <p><a href="response.jsp">Show all</a></p>
     </body>
 </html>
