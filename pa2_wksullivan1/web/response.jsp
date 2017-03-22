@@ -81,8 +81,8 @@
             Product ID:<html:text property="product_ID" /><br>
             Quantity:<html:text property="quantity" /><br>
             Shipping Cost:<html:text property="shippingCost" /><br>
-            Sales Date:<html:text property="salesDate" /><br>
-            Shipping Date:<html:text property="shippingDate" />  <br>         
+            Sales Date(yyy-mm-dd):<html:text property="salesDate" /><br>
+            Shipping Date(yyy-mm-dd):<html:text property="shippingDate" />  <br>         
             
             <html:submit value="Update"/>
         </html:form>             
