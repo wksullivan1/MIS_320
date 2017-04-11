@@ -17,29 +17,28 @@ import java.util.List;
  *
  * @author willk
  */
-public class ProductDao
+public class CustomerDao
 {
 
     private Connection connection;
 
-    public ProductDao()
+    public CustomerDao()
     {
         connection = DbConnectionUtil.getConnection();
     }
 
-    public void addProduct(Product product)
+    public void addCustomer(Customer customer)
     {
         try
         {
-            PreparedStatement st = connection.prepareStatement("INSERT INTO PRODUCT(ORDER_NUM, CUSTOMER_ID, PRODUCT_ID, QUANTITY, SHIPPING_COST,SALES_DATE,SHIPPING_DATE) VALUES(?,?,?,?,?,?,?)");
+            PreparedStatement st = connection.prepareStatement("INSERT INTO customernobs (Username,password,Customer_Pref,Payment,Email) VALUES(?,?,?,?,?)");
 
-            st.setInt(1, product.getOrderNumber());
-            st.setInt(2, product.getCustomerID());
-            st.setInt(3, product.getProduct_ID());
-            st.setInt(4, product.getQuantity());
-            st.setInt(5, product.getShippingCost());
-            st.setDate(6, new java.sql.Date(product.getSalesDate().getTime()));
-            st.setDate(7, new java.sql.Date(product.getShippingDate().getTime()));
+            st.setString(1, customer.getUsername());
+            st.setString(2, customer.getPassword());
+            st.setString(3, customer.getCustomer_Pref());
+            st.setString(4, customer.getPayment());
+            st.setString(5, customer.getEmail());
+           
             st.executeUpdate();
 
         } catch (SQLException e)
@@ -48,12 +47,12 @@ public class ProductDao
         }
     }
 
-    public void deleteProduct(int orderNumber)
+    public void deleteCustomer(int Customer_Id)
     {
         try
         {
-            PreparedStatement st = connection.prepareStatement("DELETE FROM PRODUCT WHERE ORDER_NUM= ?");
-            st.setInt(1, orderNumber);
+            PreparedStatement st = connection.prepareStatement("DELETE FROM customernobs WHERE Customer_Id= ?");
+            st.setInt(1, Customer_Id);
             st.executeUpdate();
         } catch (SQLException ex)
         {
@@ -61,19 +60,18 @@ public class ProductDao
         }
     }
 
-    public void updateProduct(Product product)
+    public void updateCustomer(Customer customer)
     {
         try
         {
-            PreparedStatement st = connection.prepareStatement("update PRODUCT set CUSTOMER_ID=?, PRODUCT_ID=?, QUANTITY=?, SHIPPING_COST=?, SALES_DATE =?, SHIPPING_DATE=?" + "where ORDER_NUM=?");
+            PreparedStatement st = connection.prepareStatement("update customernobs set Username=?, Password=?, Customer_Pref=?, Payment=?,  Email=?" + "where Customer_Id=?");
 
-            st.setInt(1, product.getCustomerID());
-            st.setInt(2, product.getProduct_ID());
-            st.setInt(3, product.getQuantity());
-            st.setInt(4, product.getShippingCost());
-            st.setDate(5, new java.sql.Date(product.getSalesDate().getTime()));
-            st.setDate(6, new java.sql.Date(product.getShippingDate().getTime()));
-            st.setInt(7, product.getOrderNumber());
+            st.setString(1, customer.getUsername());
+            st.setString(2, customer.getPassword());
+            st.setString(3, customer.getCustomer_Pref());
+            st.setString(4, customer.getPayment());
+            st.setString(5, customer.getEmail());           
+            st.setInt(6, customer.getCustomer_Id());
 
             st.executeUpdate();
 
@@ -83,35 +81,34 @@ public class ProductDao
         }
     }
 
-    public List<Product> getAllProducts()
+    public List<Customer> getAllCustomers()
     {
-        List<Product> products = new ArrayList<Product>();
+        List<Customer> customers = new ArrayList<Customer>();
         try
         {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from PRODUCT");
+            ResultSet rs = statement.executeQuery("select * from customernobs");
             while (rs.next())
             {
-                Product product = new Product();
-                product.setOrderNumber(rs.getInt("ORDER_NUM"));
-                product.setCustomerID(rs.getInt("CUSTOMER_ID"));
-                product.setProduct_ID(rs.getInt("PRODUCT_ID"));
-                product.setQuantity(rs.getInt("QUANTITY"));
-                product.setShippingCost(rs.getInt("SHIPPING_COST"));
-                product.setSalesDate(rs.getDate("SALES_DATE"));
-                product.setShippingDate(rs.getDate("SHIPPING_DATE"));
+                Customer customer = new Customer();
+                customer.setCustomer_Id(rs.getInt("Customer_Id"));
+                customer.setUsername(rs.getString("Username"));
+                customer.setPassword(rs.getString("Password"));
+                customer.setCustomer_Pref(rs.getString("Customer_Pref"));
+                customer.setPayment(rs.getString("Payment"));
+                customer.setEmail(rs.getString("Email"));
 
-                products.add(product);
+                customers.add(customer);
             }
         } catch (SQLException e)
         {
             e.printStackTrace();
         }
 
-        return products;
+        return customers;
     }
 
-    public Product getProductByOrderNumber(int orderNumber)
+    public Customer getCustomerByC(int orderNumber)
     {
         Product product = new Product();
         try
